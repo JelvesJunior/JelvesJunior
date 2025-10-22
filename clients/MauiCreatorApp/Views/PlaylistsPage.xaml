@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CreatorApp.PlaylistsPage"
+             Title="Minhas Playlists">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Atualizar" Command="{Binding RefreshCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <Grid RowDefinitions="Auto,*" Padding="24">
+        <StackLayout Spacing="12">
+            <Label Text="Nova Playlist" FontAttributes="Bold" />
+            <Entry Placeholder="Título" Text="{Binding NewPlaylistTitle}" />
+            <Entry Placeholder="Descrição" Text="{Binding NewPlaylistDescription}" />
+            <Button Text="Criar" Command="{Binding CreateCommand}" />
+        </StackLayout>
+
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Playlists}" Margin="0,24,0,0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="16" Padding="16" Margin="0,0,0,12">
+                        <StackLayout>
+                            <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="18" />
+                            <Label Text="{Binding Description}" FontSize="14" />
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
